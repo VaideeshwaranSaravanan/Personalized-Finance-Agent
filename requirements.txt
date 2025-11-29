@@ -1,22 +1,5 @@
-python-dotenv
-google-generativeai
 google-adk
-langchain
-google-genai
-langchain-google-genai
-langchain-community
-PyPDF2
-youtube-transcript-api
-faiss-cpu
+yfinance
+plyer
 streamlit
-sentence-transformers
-streamlit
-pypdf
-python-dotenv
-pinecone[grpc]
-pinecone-client==3.2.2
-langchain-pinecone==0.1.0
-langchain-text-splitters
-langchain-community
-langchain_experimental
-langchain-google-genai
+-e .
