@@ -4,7 +4,7 @@
 This project implements a **stateful multi-agent system** for financial intelligence - capable of answering finance questions, retrieving real-time stock data, monitoring stock dips, performing mortgage calculations, extracting financial facts from the web, and maintaining contextual memory - all inside a clean and modern **Streamlit Chat UI**.
 
 ---
-![Architecture](Results/Capstone_Finance.jpg)
+![Architecture](Results/Capstone_Finance.svg)
 
 
 ## Features
