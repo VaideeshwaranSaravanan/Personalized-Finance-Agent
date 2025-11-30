@@ -203,4 +203,4 @@ Open to pull requests, improvements, and new ideas.
 
 ## License
 
-MIT License — feel free to use & modify.
+MIT License - feel free to use & modify.
