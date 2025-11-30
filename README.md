@@ -28,7 +28,7 @@ Orchestrates:
 - parallel routing (e.g., stock + monitor)  
 - dip threshold logic (calls calculator)
 
-FinanceBrain **never answers directly** — it only coordinates.
+FinanceBrain **never answers directly** - it only coordinates.
 
 #### **3️. StockAgent**
 Retrieves:
@@ -36,7 +36,7 @@ Retrieves:
 - historical data  
 - sector context  
 
-Uses `get_stock_yahoo()` and safe insights — *no personal financial advice*.
+Uses `get_stock_yahoo()` and safe insights - *no personal financial advice*.
 
 #### **4️. MortgageAgent**
 Handles:
@@ -126,25 +126,28 @@ A modern interactive UI:
 ## Running the App
 
 ### **1. Install dependencies**
+
 ```bash
 pip install -r requirements.txt
-
+```
 ### **2. Add your API key**
 Create .env and add Gemini API Key inside:
 
 ```bash
 GENAI_API_KEY = "your-key-here"
+```
 
 ### **3. Run the Streamlit chatbot**
 
 ```bash
 streamlit run app.py
+```
 
 ### **4. CLI version (for debugging)**
 
 ```bash
 python MainAgent.py
-
+```
 ## Example Interactions
 
 ### **Stock Price**
