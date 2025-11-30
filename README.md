@@ -1,7 +1,7 @@
 # Personalized Finance Agent  
 *A multi-agent financial assistant built using Google Agent Developer Kit (ADK), Gemini 2.5, and Streamlit.*
 
-This project implements a **stateful multi-agent system** for financial intelligence — capable of answering finance questions, retrieving real-time stock data, monitoring stock dips, performing mortgage calculations, extracting financial facts from the web, and maintaining contextual memory — all inside a clean and modern **Streamlit Chat UI**.
+This project implements a **stateful multi-agent system** for financial intelligence - capable of answering finance questions, retrieving real-time stock data, monitoring stock dips, performing mortgage calculations, extracting financial facts from the web, and maintaining contextual memory - all inside a clean and modern **Streamlit Chat UI**.
 
 ---
 
@@ -202,3 +202,84 @@ Open to pull requests, improvements, and new ideas.
 
 MIT License — feel free to use & modify.
 
+
+flowchart TD
+
+%% STYLE
+classDef agent fill:#1f77b4,stroke:#0d3a63,stroke-width:1px,color:#fff;
+classDef tool fill:#2ca02c,stroke:#145214,stroke-width:1px,color:#fff;
+classDef ui fill:#ff7f0e,stroke:#8a4600,stroke-width:1px,color:#fff;
+classDef router fill:#9467bd,stroke:#4b2a75,stroke-width:1px,color:#fff;
+classDef brain fill:#d62728,stroke:#7d1414,stroke-width:1px,color:#fff;
+classDef parallel fill:#17becf,stroke:#0f5960,stroke-width:1px,color:#fff;
+
+%% USER
+User(["🧑 User"])
+class User ui
+
+%% Streamlit UI
+UI["Streamlit Chat UI\n(User Input → Chat Display → Loader)"]
+class UI ui
+
+%% Main Sequential Pipeline
+Router["RouterAgent\n(Classifier)"]
+class Router router
+
+Brain["FinanceBrain\n(Orchestrator)"]
+class Brain brain
+
+Tone["ToneAgent\n(Response Formatter)"]
+class Tone agent
+
+%% Subagents under FinanceBrain
+Mortgage["MortgageAgent"]
+Stock["StockAgent"]
+Monitor["StockMonitoringAgent"]
+FinanceInfo["FinanceInfoAgent"]
+ParallelSSM["ParallelAgent\n(Stock + Monitor)"]
+ParallelMS["ParallelAgent\n(Mortgage + Stock)"]
+
+
+class Mortgage agent
+class Stock agent
+class Monitor agent
+class FinanceInfo agent
+class ParallelSSM parallel
+class ParallelMS parallel
+
+%% Tools
+Yahoo["Yahoo Finance API"]
+Search["Google Search Tool"]
+Calc["Calculator Agent\n(Python Execution)"]
+Scheduler["Alert Scheduler"]
+Interest["Interest Extractor"]
+
+class Yahoo tool
+class Search tool
+class Calc tool
+class Scheduler tool
+class Interest tool
+
+
+%% Connections
+User --> UI --> Router --> Brain --> Tone
+
+%% Brain routing
+Brain -->|Mortgage| Mortgage
+Brain -->|Stock| Stock
+Brain -->|Stock Monitor| Monitor
+Brain -->|Generic Finance| FinanceInfo
+Brain -->|Stock + Monitor\nParallel| ParallelSSM
+Brain -->|Mortgage + Stock\nParallel| ParallelMS
+
+%% Subagent tools
+Stock --> Yahoo
+FinanceInfo --> Search
+Mortgage --> Calc
+Mortgage --> Interest
+Monitor --> Scheduler
+ParallelSSM --> Stock
+ParallelSSM --> Monitor
+
+%% Final Output
+Tone --> UI
